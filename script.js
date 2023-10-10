@@ -11,4 +11,5 @@ loginForm.onsubmit = async (e) => {
     password: e.target[1].value,
   }
   const res = await SignIn(user)
+  console.log(res)
 }

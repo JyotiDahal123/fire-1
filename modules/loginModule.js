@@ -26,9 +26,16 @@ const SignIn = async (user) => {
       user.email,
       user.password,
     )
-    console.log(res.auth)
+    const token = await res.user.getIdToken()
+    return {
+      success: true,
+      token,
+    }
   } catch (error) {
-    console.log(error.message)
+    return {
+      success: false,
+      error,
+    }
   }
 }
 export { SignIn }
