@@ -3,6 +3,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebas
 import {
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 
 const firebaseConfig = {
@@ -38,4 +40,26 @@ const SignIn = async (user) => {
     }
   }
 }
-export { SignIn }
+// guard
+ const guard = (callback) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) return true
+    location.href = callback
+  })
+}
+
+//logout
+const logout = async () => {
+  try {
+    await signOut(auth)
+    return {
+      success: true,
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error,
+    }
+  }
+}
+export { SignIn, logout,guard }
