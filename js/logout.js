@@ -1,9 +1,9 @@
-import { logout, guard } from '../modules/loginModule.js'
+import { Logout, Guard } from '../modules/loginModule.js'
 // Protector
-guard('signin.html')
+Guard('signin.html')
 //logout
 const logoutBtn = document.querySelector('#logout')
-console.log(logoutBtn)
+
 logoutBtn.onclick = async () => {
-  await logout()
+  await Logout()
 }

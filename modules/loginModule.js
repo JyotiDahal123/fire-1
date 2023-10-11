@@ -2,6 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
 import {
   getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
@@ -21,6 +22,27 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 const auth = getAuth()
 
+//signUp
+const SignUp = async (user) => {
+  try {
+    const {
+      user: { uid },
+    } = await createUserWithEmailAndPassword(auth, user.email, user.password)
+
+    return {
+      success: true,
+      user: {
+        id: uid,
+      },
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error,
+    }
+  }
+}
+//signIn
 const SignIn = async (user) => {
   try {
     const res = await signInWithEmailAndPassword(
@@ -41,7 +63,7 @@ const SignIn = async (user) => {
   }
 }
 // guard
- const guard = (callback) => {
+const Guard = (callback) => {
   onAuthStateChanged(auth, (user) => {
     if (user) return true
     location.href = callback
@@ -49,7 +71,7 @@ const SignIn = async (user) => {
 }
 
 //logout
-const logout = async () => {
+const Logout = async () => {
   try {
     await signOut(auth)
     return {
@@ -62,4 +84,4 @@ const logout = async () => {
     }
   }
 }
-export { SignIn, logout,guard }
+export { SignUp, SignIn, Logout, Guard }

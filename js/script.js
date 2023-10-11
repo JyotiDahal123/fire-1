@@ -17,4 +17,3 @@ loginForm.onsubmit = async (e) => {
   res.innerHTML = 'Invalid Credentials!'
   res.className = 'text-red-500'
 }
-
