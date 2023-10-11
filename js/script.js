@@ -13,7 +13,17 @@ loginForm.onsubmit = async (e) => {
   }
   const { success } = await SignIn(user)
 
-  if (success) return (location.href = 'home.html')
+  if (success) {
+    res.innerHTML = 'Login Successfully!'
+    res.className = 'text-green-500'
+    setTimeout(() => {
+      location.href = 'home.html'
+    }, 1000)
+    return
+  }
   res.innerHTML = 'Invalid Credentials!'
   res.className = 'text-red-500'
+  setTimeout(() => {
+    res.innerHTML = ''
+  }, 2000)
 }

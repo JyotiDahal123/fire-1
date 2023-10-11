@@ -1,5 +1,5 @@
 //Modules
-import { SignUp } from './modules/firebase.js'
+import { SignUp } from '../modules/loginModule.js'
 //Selectors
 const myForm = document.querySelector('#my-form')
 const res = document.querySelector('#res')
@@ -16,6 +16,9 @@ myForm.onsubmit = async (e) => {
   if (success) {
     res.innerHTML = 'Register successfully !'
     res.className = 'text-green-500'
+    setTimeout(() => {
+      location.href = 'home.html'
+    }, 1000)
     return
   }
   res.innerHTML = 'Register failed !'
