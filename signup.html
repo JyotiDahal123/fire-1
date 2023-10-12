@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User credientials</title>
+    <script
+      src="https://kit.fontawesome.com/4d88092250.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -36,8 +41,21 @@
             class="border px-2 p-1 rounded-md outline-none text-gray-600"
           />
         </div>
-        <div>
+        <div class="flex flex-col gap-4">
+          <div class="flex gap-3 items-center">
+            <i class="fa-solid fa-spinner fa-spin hidden"></i>
+            <button
+              type="button"
+              id="passGen"
+              class="text-gray-500 text-sm hover:text-gray-800"
+            >
+              Generate password
+            </button>
+          </div>
+
           <button
+            id="regBtn"
+            type="submit"
             class="bg-blue-600 px-4 py-1 text-white rounded-md hover:bg-blue-500"
           >
             Register
